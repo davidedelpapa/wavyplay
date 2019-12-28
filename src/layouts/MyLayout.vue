@@ -11,20 +11,22 @@
           aria-label="Menu"
         />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-toolbar-title>Quasar App</q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn color="white" text-color="primary">
+          Load File
+          <input
+            type="file"
+            class="q-uploader__input overflow-hidden absolute-full"
+            v-on:change="fileChosen"
+            ref="fileInput"
+            accept="audio/mpeg"
+          />
+        </q-btn>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>Essential Links</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
@@ -91,12 +93,19 @@
 </template>
 
 <script>
+import { EventBus } from '../services/event-bus.js'
 export default {
   name: 'MyLayout',
 
   data () {
     return {
       leftDrawerOpen: false
+    }
+  },
+
+  methods: {
+    fileChosen (file) {
+      EventBus.$emit('fileChosen', file)
     }
   }
 }

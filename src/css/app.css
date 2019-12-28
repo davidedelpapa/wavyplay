@@ -1,1 +1,14 @@
 /* app global css */
+.controls {
+background-color: white;
+}
+.audio-container {
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../assets/audio_img.jpg") no-repeat center;
+background-size: cover;
+}
